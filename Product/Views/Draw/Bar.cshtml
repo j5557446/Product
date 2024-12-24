@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewBag.Title = "Bar";
+
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <h2>類別產品數量圓餅圖</h2>
+        <div class="col-lg-6">
+            <canvas id="PieChart"></canvas>
+        </div>
+        
+        <div class="col-lg-6" style=" margin-top: -5%;">
+            <h2>類別產品數量表前五</h2>
+            <table class="table-bordered table">
+                <tr>
+                    <th>
+                        類別
+                    </th>
+                    <th>
+                        數量
+                    </th>
+
+                </tr>
+
+                @*@for (int i = 0; i < (ViewBag.x as string[]).Length; i++)*@
+                @for (int i = 0; i < (ViewBag.x as string[]).Length; i++)
+                {
+                    if(i == 5)
+                    {
+                        break;
+                    }
+                    <tr>
+                        <td>
+                            @ViewBag.x[i]
+                        </td>
+                        <td>
+                            @ViewBag.y[i]
+                        </td>
+
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <h2>類別產品數量柱狀圖</h2>
+        <div class="col-12">
+
+            <canvas id="BarChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<script src="~/Scripts/Chart.min.js"></script>
+<script>
+    var jsx =@Html.Raw(Json.Encode(ViewBag.x));//顯示json原始資料
+    var jsy =@Html.Raw(Json.Encode(ViewBag.y));//顯示json原始資料
+    var ctx_bar = document.getElementById("BarChart");
+    var ctx_pie = document.getElementById("PieChart");
+    var chart = new Chart(ctx_bar, {
+        type: 'bar',
+        data: {
+            labels: jsx,
+            datasets: [{
+                label: '數量',
+                data: jsy,
+                backgroundColor: [
+                    'rgba(255,199,132,0.5)',
+                    'rgba(255,99,32,0.5)',
+                    'rgba(255,99,13,0.5)',
+                    'rgba(25,99,132,0.5)',
+                    'rgba(25,99,232,0.5)',
+                    'rgba(155,199,132,0.5)',
+                    'rgba(55,99,232,0.5)',
+                    'rgba(75,9,32,0.5)',
+                    'rgba(55,9,32,0.5)',
+                    'rgba(25,89,232,0.5)',
+                    'rgba(55,199,32,0.5)',
+                    'rgba(155,66,88,0.5)',
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    })
+
+    var chart = new Chart(ctx_pie, {
+        type: 'doughnut',
+        data: {
+            labels: jsx,
+            datasets: [{
+                label: '數量',
+                data: jsy,
+                backgroundColor: [
+                    'rgba(255,199,132,0.5)',
+                    'rgba(255,99,32,0.5)',
+                    'rgba(255,99,13,0.5)',
+                    'rgba(25,99,132,0.5)',
+                    'rgba(25,99,232,0.5)',
+                    'rgba(155,199,132,0.5)',
+                    'rgba(55,99,232,0.5)',
+                    'rgba(75,9,32,0.5)',
+                    'rgba(55,9,32,0.5)',
+                    'rgba(25,89,232,0.5)',
+                    'rgba(55,199,32,0.5)',
+                    'rgba(155,66,88,0.5)',
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    })
+
+
+</script>

@@ -1,0 +1,56 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>登入</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            background-image: url('@Url.Content("~/images/white.jpg")');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <form action="@Url.Action("Index")" method="post">
+        <div class="container" style="margin-top:120px;">
+            <div class="row">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">會員登入</div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="帳號">帳號：</label>
+                            <input type="text" class="form-control" id="帳號" name="帳號">
+                        </div>
+                        <div class="form-group">
+                            <label for="密碼">密碼：</label>
+                            <input type="password" class="form-control" id="密碼" name="密碼">
+                        </div>
+                        <input type="submit" value="登入" class="btn btn-primary" />
+                        <span>帳號 : admin 密碼 : admin</span>
+                        @if (ViewBag.IsLogin != null)
+                        {
+                            <div class="alert alert-danger">
+                                <strong>帳密錯誤！</strong> 請重新登入
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
