@@ -17,7 +17,7 @@ namespace Product.Controllers
         // GET: Home
         public ActionResult Index()
         {
-            return Redirect("https://drive.google.com/file/d/1tfe6wqU1l6Cwn5AG5sIpn8kFg0V_7gZK/view?usp=drive_link");
+            //return Redirect("https://drive.google.com/file/d/1tfe6wqU1l6Cwn5AG5sIpn8kFg0V_7gZK/view?usp=drive_link");
 
             if (User.Identity.IsAuthenticated)
             {
